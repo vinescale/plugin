@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "VineScale: a safety gate for coding agents. Blocks destructive actions on production and asks before other production changes.",
   "homepage": "https://vinescale.com",
   "license": {
@@ -8,14 +8,14 @@
   },
   "architecture": {
     "64bit": {
-      "url": "https://github.com/vinescale/plugin/releases/download/v0.1.0/vine-windows-amd64.exe#/vine.exe",
-      "hash": "a074478e051c2b77e2f43dcae1ee1f00d691120f5ae620c90c1f9526e765e2ec"
+      "url": "https://github.com/vinescale/plugin/releases/download/v0.2.0/vine-windows-amd64.exe#/vine.exe",
+      "hash": "465f8f82c0dfd08a6786a57b874da0640816b9bdfade4e8cc81bf21056cb7ce2"
     },
     "arm64": {
-      "url": "https://github.com/vinescale/plugin/releases/download/v0.1.0/vine-windows-arm64.exe#/vine.exe",
-      "hash": "df22048ec2ea965481eb695872e3c65c6846b39070a6d709b5d49a203f94caed"
+      "url": "https://github.com/vinescale/plugin/releases/download/v0.2.0/vine-windows-arm64.exe#/vine.exe",
+      "hash": "28e8597d63db04abc4ea9894ead82aeafb05d63e6cc0ce23970f8a92bcab3347"
     }
   },
   "bin": "vine.exe",
-  "notes": "Run 'vine install' to add VineScale's hooks to Claude Code."
+  "notes": "Run 'vine install' to add VineScale's hooks to Claude Code, Codex, Cursor, Antigravity and Grok Build."
 }

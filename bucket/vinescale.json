@@ -1,0 +1,21 @@
+{
+  "version": "0.1.0",
+  "description": "VineScale: a safety gate for coding agents. Blocks destructive actions on production and asks before other production changes.",
+  "homepage": "https://vinescale.com",
+  "license": {
+    "identifier": "Proprietary",
+    "url": "https://vinescale.com"
+  },
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/vinescale/plugin/releases/download/v0.1.0/vine-windows-amd64.exe#/vine.exe",
+      "hash": "a074478e051c2b77e2f43dcae1ee1f00d691120f5ae620c90c1f9526e765e2ec"
+    },
+    "arm64": {
+      "url": "https://github.com/vinescale/plugin/releases/download/v0.1.0/vine-windows-arm64.exe#/vine.exe",
+      "hash": "df22048ec2ea965481eb695872e3c65c6846b39070a6d709b5d49a203f94caed"
+    }
+  },
+  "bin": "vine.exe",
+  "notes": "Run 'vine install' to add VineScale's hooks to Claude Code."
+}

@@ -1,0 +1,98 @@
+#!/bin/sh
+# Runs vine for the VineScale plugin's hooks. vine lives in the plugin's own
+# data folder ($CLAUDE_PLUGIN_DATA/bin, which Claude Code keeps across plugin
+# updates and removes with the plugin), or ~/.local/bin when Claude Code
+# doesn't set it: the user's own folders, never a system folder, never sudo
+# (VIN-26). When it isn't
+# there, or is older than the version this plugin pins, the launcher fetches
+# the pinned build for this machine over https, checks its SHA-256 against
+# release.txt next to this folder, and only then puts it in place.
+#
+# It fails open like the hook: when anything goes wrong it prints nothing
+# and exits 0, so Claude Code carries on as if VineScale weren't installed.
+# Only `session-start` fetches; the PreToolUse hook never touches the
+# network, so it stays fast.
+#
+#   vine-run hook            PreToolUse
+#   vine-run session-start   SessionStart (fetches vine first when needed)
+umask 022
+here=$(cd "$(dirname "$0")/.." 2>/dev/null && pwd) || exit 0
+pinned="$here/release.txt"
+if [ -n "${CLAUDE_PLUGIN_DATA:-}" ]; then
+	bindir="$CLAUDE_PLUGIN_DATA/bin"
+elif [ -n "${HOME:-}" ]; then
+	bindir="$HOME/.local/bin"
+else
+	exit 0
+fi
+
+os=$(uname -s 2>/dev/null | tr '[:upper:]' '[:lower:]')
+case "$os" in
+darwin) ;;
+linux) ;;
+mingw* | msys* | cygwin*) os=windows ;;
+*) exit 0 ;;
+esac
+arch=$(uname -m 2>/dev/null)
+case "$arch" in
+x86_64 | amd64) arch=amd64 ;;
+arm64 | aarch64) arch=arm64 ;;
+*) exit 0 ;;
+esac
+ext=""
+[ "$os" = windows ] && ext=.exe
+name="vine-$os-$arch$ext"
+vine="${VINESCALE_BIN:-$bindir/vine$ext}"
+
+want=$(sed -n 's/^version //p' "$pinned" 2>/dev/null)
+base=$(sed -n 's/^base //p' "$pinned" 2>/dev/null)
+sum=$(sed -n "s/^sha256 $name //p" "$pinned" 2>/dev/null)
+
+sha() {
+	if command -v sha256sum >/dev/null 2>&1; then
+		sha256sum "$1" | cut -d' ' -f1
+	elif command -v shasum >/dev/null 2>&1; then
+		shasum -a 256 "$1" | cut -d' ' -f1
+	fi
+}
+
+# fetch puts the pinned build in place; any failure leaves the old one.
+fetch() {
+	[ -z "${VINESCALE_BIN:-}" ] || return 1 # a vine the user chose is theirs to update
+	[ -n "$want" ] && [ -n "$sum" ] || return 1
+	case "$base" in https://*) ;; *) return 1 ;; esac
+	mkdir -p "$bindir" || return 1
+	tmp="$bindir/.vine-download.$$"
+	if download "$tmp" && [ "$(sha "$tmp")" = "$sum" ] && chmod 755 "$tmp" && mv -f "$tmp" "$vine"; then
+		return 0
+	fi
+	rm -f "$tmp"
+	return 1
+}
+
+download() {
+	if command -v curl >/dev/null 2>&1; then
+		curl -fsSL --proto '=https' --max-time 60 -o "$1" "$base/$name"
+	elif command -v wget >/dev/null 2>&1; then
+		wget -q --https-only -T 60 -O "$1" "$base/$name"
+	else
+		return 1
+	fi
+}
+
+case "${1:-}" in
+session-start)
+	have=""
+	[ -x "$vine" ] && have=$("$vine" version 2>/dev/null | sed -n 's/^vine //p')
+	if [ "$have" != "$want" ]; then
+		fetch >/dev/null 2>&1
+	fi
+	[ -x "$vine" ] || exit 0
+	exec "$vine" session-start
+	;;
+hook)
+	[ -x "$vine" ] || exit 0
+	exec "$vine" hook
+	;;
+esac
+exit 0

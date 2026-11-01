@@ -1,0 +1,10 @@
+# Written by src/release.sh. The plugin's launcher downloads vine from
+# base and runs it only when its SHA-256 matches the line for this machine.
+version 0.1.0
+base https://github.com/vinescale/plugin/releases/download/v0.1.0
+sha256 vine-darwin-amd64 841c2d14f63b32857f8d9229c13af76351693462fdbfaafc2d79ede82b444218
+sha256 vine-darwin-arm64 791f30dfd39858698b83e2765b0007de1acbf26a80ef5e54904211f2a8c5b049
+sha256 vine-linux-amd64 f75ad2fec035235fe6b4576353a46858a8bc150a9d8366b8286f21e393c257a5
+sha256 vine-linux-arm64 db55113652cbcc64c3c66e905f7224d9ceb92cfb6a20e99ad99a71189c7d9d2b
+sha256 vine-windows-amd64.exe a074478e051c2b77e2f43dcae1ee1f00d691120f5ae620c90c1f9526e765e2ec
+sha256 vine-windows-arm64.exe df22048ec2ea965481eb695872e3c65c6846b39070a6d709b5d49a203f94caed

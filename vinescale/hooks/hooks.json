@@ -1,0 +1,19 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^(Bash|Edit|MultiEdit|Write|NotebookEdit|mcp__.*)$",
+        "hooks": [
+          { "type": "command", "command": "sh \"${CLAUDE_PLUGIN_ROOT}/bin/vine-run\" hook", "timeout": 1 }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "sh \"${CLAUDE_PLUGIN_ROOT}/bin/vine-run\" session-start", "timeout": 90 }
+        ]
+      }
+    ]
+  }
+}

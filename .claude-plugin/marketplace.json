@@ -1,0 +1,11 @@
+{
+  "name": "vinescale",
+  "owner": { "name": "VineScale" },
+  "plugins": [
+    {
+      "name": "vinescale",
+      "source": "./vinescale",
+      "description": "Warns or blocks a coding agent's action when it would break production: database migrations and SQL, Terraform, Kubernetes, cloud deletes, force pushes and deletes."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "vinescale",
+  "description": "A safety gate for coding agents: before a shell command, migration, SQL query or edit runs, VineScale checks what it would touch, blocks destructive actions on production and asks before other production changes. Runs locally and fails open.",
+  "author": { "name": "VineScale" },
+  "homepage": "https://vinescale.com"
+}

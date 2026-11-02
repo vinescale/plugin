@@ -1,10 +1,10 @@
 # Written by src/release.sh. The plugin's launcher downloads vine from
 # base and runs it only when its SHA-256 matches the line for this machine.
-version 0.2.0
-base https://github.com/vinescale/plugin/releases/download/v0.2.0
-sha256 vine-darwin-amd64 a15a7e8155b6689ed0901ace1f2f840ca90fa01333eddea8b8cdd4178c82bb53
-sha256 vine-darwin-arm64 c4dd153b3f988c99d383ba2af1eb49f71d95af1c0828b42b58cf07a9cf4740e2
-sha256 vine-linux-amd64 927609a4ccc407b561e9a180dfcd4e6b6e57ee56a266fc72ee5e0669b3a8c5c1
-sha256 vine-linux-arm64 41a1e2b241d13498b034ba8f26c33393ba06aa2d5aa8833aa6e8097ab5882f60
-sha256 vine-windows-amd64.exe 465f8f82c0dfd08a6786a57b874da0640816b9bdfade4e8cc81bf21056cb7ce2
-sha256 vine-windows-arm64.exe 28e8597d63db04abc4ea9894ead82aeafb05d63e6cc0ce23970f8a92bcab3347
+version 0.3.0
+base https://github.com/vinescale/plugin/releases/download/v0.3.0
+sha256 vine-darwin-amd64 21d5e667a6768d01e80a6067804836b35a3c30af2de84cc2ff09ddfb5271280e
+sha256 vine-darwin-arm64 2e41e175e1b911ee3dd9c52c9a04d1ea06975d68d6296747874e5876854f5b41
+sha256 vine-linux-amd64 12de31d99779efe1b7b1812525dd621a654cdb364382b984760f7d8d071553af
+sha256 vine-linux-arm64 f203083b066b5445828193a3e7b6ba013de446eb5cf980ec77f1b625fd29cae0
+sha256 vine-windows-amd64.exe f3efa83a9dda95b9a07d4d50ea966d81fef157dce2b22e21157b7069fe5b42c4
+sha256 vine-windows-arm64.exe 998af480dabdeb96d8adbf77e6efb058504b79e94a55a33be3202d9aa5ef01bd

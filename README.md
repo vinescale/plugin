@@ -2,7 +2,7 @@
 
 VineScale is a safety gate for AI coding agents: Claude Code, Codex, Cursor, Antigravity and Grok Build. Before the agent runs a command, edits a file or calls a database tool, VineScale works out what the action would touch. It lets the action through, asks you first, or blocks it, with one line that says why. It runs on your machine and makes no network calls while it decides.
 
-This repository holds only the Claude Code plugin, the Scoop bucket and the release builds of `vine`, version 0.2.0. VineScale's source code is not here.
+This repository holds only the Claude Code plugin, the Scoop bucket and the release builds of `vine`, version 0.3.0. VineScale's source code is not here.
 
 ## Install
 
